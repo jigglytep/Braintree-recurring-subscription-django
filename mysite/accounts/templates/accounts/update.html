@@ -1,0 +1,100 @@
+{% extends 'base.html' %} {% load static %} {% block body %}
+
+
+<div class="container-fluid">
+  <section class="container">
+    <div class="container-page">
+      <div class="row">
+        <div class="col-md-6">
+          <form id="payment-form" method="post" action=".">
+            {{ error | safe }}
+            {% csrf_token %}
+
+
+            <div class="container"> 
+              <div class="form-group col-lg-8">
+                <section>
+                  <label for="amount">
+                    <div class="input-wrapper amount-wrapper">
+                    </div>
+                  </label>
+
+                  <div class="bt-drop-in-wrapper">
+                    <div id="bt-dropin"></div>
+                  </div>
+                </section>
+
+                <input type="hidden" id="nonce" name="payment_method_nonce" />
+
+                <div class="bt-drop-in-wrapper">
+                  <div id="bt-dropin">
+                    <button class="button" type="submit" id="submit-button"><span> Update Payment</span></button>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+  $("#id_username").addClass("form-control");
+  $("#id_password1").addClass("form-control");
+  $("#id_password2").addClass("form-control");
+  $(".errorlist").css("color", "red");
+
+  $(document).ready(function () {
+    $("#id_password2").keyup(validate);
+  });
+
+  function validate() {
+    var password1 = $("#id_password1").val();
+    var password2 = $("#id_password2").val();
+
+    if (password1 == password2) {
+      $("#validate-status")
+        .text("Match")
+        .css("color", "green");
+    } else {
+      $("#validate-status")
+        .text("No Match")
+        .css("color", "red");
+    }
+  }
+</script>
+
+<script src="https://js.braintreegateway.com/web/dropin/1.19.0/js/dropin.min.js"></script>
+<script>
+  var form = document.querySelector('#payment-form');
+  var client_token = '{{ client_token }}';
+
+  braintree.dropin.create({
+    authorization: client_token,
+    container: '#bt-dropin',
+    paypal: {
+      flow: 'vault'
+    }
+  }, function (createErr, instance) {
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      instance.requestPaymentMethod(function (err, payload) {
+        if (err) {
+          console.log('Error', err);
+          return;
+        }
+
+        // Add the nonce to the form and submit
+        document.querySelector('#nonce').value = payload.nonce;
+        form.submit();
+      });
+    });
+  });
+</script>
+{% endblock %}

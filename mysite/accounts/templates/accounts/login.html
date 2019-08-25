@@ -1,0 +1,23 @@
+<script type="application/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<title>BEST LOGIN IN PAGE IN THE WORLD</title>
+
+<body>
+<div class="container">
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-primary" type="submit">Login</button>
+    <a class="btn btn-primary" href="{% url 'accounts:register' %}">Register</a>
+    <div class="form-group text-xs-center">
+      <small><a href="{% url 'accounts:reset_password' %}">Forgot password?</a></small>
+    </div>
+  </form>
+</div>
+
+
+
+</body>
+
+</html>
