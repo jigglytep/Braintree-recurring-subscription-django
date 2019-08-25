@@ -19,7 +19,7 @@ Getting started Steps:<br>
 <ol>
   <li>
 Create a virtual environment.</lu><br>
-`python3 venv env`<br><li>
+`python3 -m venv env`<br><li>
 Install dependancies<br>
 `pip install -r requirements.txt`</lu>
 <li>
