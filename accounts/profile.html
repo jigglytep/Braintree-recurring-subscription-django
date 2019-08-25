@@ -1,0 +1,18 @@
+
+
+
+<title>Profile</title>
+Subscription Status:
+{{ subscription_status }}
+<div class="container">
+  <p>
+  User Name: {{ user }}<br>
+  First Name: {{user.first_name}}<br>
+  Last Name: {{user.last_name}}<br>
+
+  Email: {{user.email}}
+  <br>
+  <a href="{% url 'accounts:edit_profile' %}">Edit Profile</a>
+
+</p>
+</div>

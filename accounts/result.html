@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% load static %} {% block body %}
+
+
+<div class="container-fluid">
+  <section class="container">
+    <div class="container-page">
+      <div class="row">
+        <div class="col-md-6">
+            {% csrf_token %}
+
+          {{message}}
+         </div>
+        
+      </div>
+      <div class="col-md-6">
+
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

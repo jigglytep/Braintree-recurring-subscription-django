@@ -1,0 +1,15 @@
+<title>Profile</title>
+
+{{error}}
+
+<div>
+<form method="post">
+  {% csrf_token %}
+  {{form.as_p}}
+  <button type="submit" >Submit</button>
+  
+</form>
+<a href="{% url 'accounts:cancel_subscription' %}">Cancell Subscription</a>
+<br>
+<a href="{% url 'accounts:update_card' %}">Update Card</a>
+</div>
