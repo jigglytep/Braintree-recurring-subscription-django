@@ -26,8 +26,13 @@ SECRET_KEY = 'r!f5$fi8=lz-6@lchb=amzs4nq3^$-##6h%e1_*ek67x-r2s-2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
+# CSRF_TRUSTED_ORIGINS = ['http://dennismbugua-didactic-trout-q7w96g77gv6h6w5w-8000.preview.app.github.dev', 'http://localhost:8000', 'http://127.0.0.1:8000']
+# CORS_ORIGIN_WHITELIST = ['http://dennismbugua-didactic-trout-q7w96g77gv6h6w5w-8000.preview.app.github.dev', 'http://localhost:8000', 'http://127.0.0.1:8000']
+# CORS_ORIGIN_WHITELIST = CSRF_TRUSTED_ORIGINS
+
+CSRF_TRUSTED_ORIGINS = ['https://dennismbugua-didactic-trout-q7w96g77gv6h6w5w-8000.preview.app.github.dev']
 
 # Application definition
 
@@ -38,8 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'accounts.apps.AccountsConfig',
-    'debug_toolbar'
+    'accounts.apps.AccountsConfig'
 ]
 
 MIDDLEWARE = [
@@ -47,18 +51,19 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
  #uncomment this to see the debug toolbar
-def show_toolbar(request):
-    return True
-DEBUG_TOOLBAR_CONFIG = {
-    "SHOW_TOOLBAR_CALLBACK" : show_toolbar,
-}
+# def show_toolbar(request):
+#     return True
+# DEBUG_TOOLBAR_CONFIG = {
+#     "SHOW_TOOLBAR_CALLBACK" : show_toolbar,
+# }
+
 ROOT_URLCONF = 'mysite.urls'
 
 TEMPLATES = [
@@ -139,11 +144,12 @@ LOGIN_EXEMPT_URLS = {
     r'^accounts/register/$'
 }
 
-BT_ENVIRONMENT=''
-BT_MERCHANT_ID=''
-BT_PUBLIC_KEY=''
-BT_PRIVATE_KEY=''
-PLAN_ID = ''
+
+BT_ENVIRONMENT='sandbox'
+BT_MERCHANT_ID='45zxhw3rm7vp3hkk'
+BT_PUBLIC_KEY='4mhmgz8s8wgd9ccx'
+BT_PRIVATE_KEY='96b4a717e70253f92c6d558e36d3930e'
+PLAN_ID = 'sandbox_zjp72v8h_45zxhw3rm7vp3hkk'
 # APP_SECRET_KEY='' #needed when you go into production
 
 #Email Settings
